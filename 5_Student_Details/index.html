@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+  <title>AngularJS Student Details</title>
+  <script src="./lib.js"></script>
+</head>
+
+<body ng-controller="myctrl">
+  <h2>Student Details</h2>
+
+  <!-- Input fields for student details -->
+  Student Name: 
+  <input type="text" ng-model="name" />
+   CGPA: 
+  <input type="number" ng-model="cgpa" ng-min="1" ng-max="10" />
+  
+  <!-- Button to add a student -->
+  <button ng-click="addStudent()">Add Student</button>
+
+  <!-- Display total number of students -->
+  <p>Total Students: {{ students.length }}</p>
+
+  <!-- List of students -->
+  <ul>
+    <li ng-repeat="student in students">
+      {{ student.name }} - CGPA: {{ student.cgpa }}
+    </li>
+  </ul>
+
+  <script>
+    var app = angular.module('myApp', []);
+    
+    app.controller('myctrl', function ($scope) {
+      $scope.students = [];
+
+      $scope.addStudent = function () {
+        if ($scope.name && $scope.cgpa) {
+          $scope.students.push({ name: $scope.name, cgpa: $scope.cgpa });
+          $scope.name = '';
+          $scope.cgpa = '';
+        }
+      };
+    });
+  </script>
+</body>
+</html>

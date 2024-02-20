@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="nameApp">
+
+<head>
+    <title>AngularJS Full Name Example</title>
+    <script src="./lib.js"></script>
+</head>
+
+<body>
+    <div ng-controller="myCtrl">
+
+        First Name:
+        <input type="text" ng-model="firstName" >
+        <br> <br>
+        Last Name:
+        <input type="text" ng-model="lastName" >
+        <br> <br>
+        <!-- Button to display the full name -->
+        <button ng-click="displayFullName()">Display Full Name</button>
+        <!-- Display the full name -->
+        <h1>Full Name is: {{ fullName }}</h1>
+    </div>
+
+    <script>
+        // Angular module and controller definition
+        angular.module('nameApp', [])
+            .controller('myCtrl', function ($scope)
+            {
+                // Default values for first name and last name
+                $scope.firstName = 'Raj';
+                $scope.lastName = 'Kumar';
+
+                // Function to display the full name
+                $scope.displayFullName = function () 
+                {
+                    $scope.fullName = $scope.firstName + ' ' + $scope.lastName;
+                };
+            });
+    </script>
+</body>
+
+</html>

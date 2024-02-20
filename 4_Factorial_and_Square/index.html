@@ -1,0 +1,52 @@
+<!-- Factorial and square -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program_2</title>
+  
+    <script src="./lib.js"> </script>
+</head>
+<body ng-app="myApp" ng-controller="myctrl">   
+    <label>Enter the Number To find factorial and Calculate its square</label> 
+    <input type="text" placeholder="Enter here" ng-model="n"><br>
+    <button ng-click="factorial(n)">calculate Factorial</button>
+    <button ng-click="square(n)">calculate Square</button>
+
+    <script>
+        var app =  angular.module("myApp",[])
+        app.controller("myctrl",function($scope)
+        {
+           $scope.factorial = function(n)
+           {
+            if (n> 0)
+            $scope.fact = factorial(n);
+        else
+            $scope.fact = "Cannot calculate";
+        
+           }
+
+           $scope.square = function(n)
+           {
+            $scope.squarenum = n*n;
+           }
+
+        });
+
+        function factorial(n)
+    {
+        if(n==0 ||n==1)
+        return 1;
+        else
+        return n*factorial(n-1);
+    }
+    </script>
+
+     <p> Factorial number is {{fact}}</p>
+     <p>Square of a number : {{squarenum}}</p>
+    
+
+</body>
+</html>
