@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="itemApp">
+<head>
+  <title>Item Collection</title>
+  <script src="./lib.js"></script>
+</head>
+<body ng-controller="itemController">
+  <h2>Item Collection</h2>
+  Add New Item:
+  <input type="text" ng-model="newItem" />
+  <button ng-click="addItem()">Add Item</button>
+  <ul>
+    <li ng-repeat="item in items track by $index">
+      {{ item }}
+      <button ng-click="removeItem($index)">Remove</button>
+    </li>
+  </ul>
+  <p>Total Items: {{ items.length }}</p>
+
+  <script>
+    var app = angular.module('itemApp', []);
+    app.controller('itemController', function ($scope) {
+      $scope.items = ['Item 1', 'Item 2', 'Item 3']; // Default items
+      $scope.newItem = '';
+      $scope.addItem = function () {
+        if ($scope.newItem) {
+          $scope.items.push($scope.newItem);
+          $scope.newItem = ''; // Clear the input field
+        }
+      };
+      $scope.removeItem = function (index) {
+        $scope.items.splice(index, 1);
+      };
+    });
+  </script>
+</body>
+</html>
